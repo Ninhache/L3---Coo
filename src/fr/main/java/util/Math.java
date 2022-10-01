@@ -1,7 +1,9 @@
 package fr.main.java.util;
 
 public class Math {
-	public boolean isPowerOfTwo() {
-		return false;
+
+	public static boolean isPowerOfTwo(int number) {
+		return (number != 0) && ((number & (number - 1)) == 0);
 	}
+	
 }
