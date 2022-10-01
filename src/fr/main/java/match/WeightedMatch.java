@@ -1,11 +1,15 @@
 package fr.main.java.match;
 
+import java.util.List;
+
+import fr.main.java.Competitor;
+
 public class WeightedMatch extends Match {
 
-	public WeightedMatch() {
+	public WeightedMatch(List<Competitor> competitors) {
 		
 	}
 	public Competitor playMatch() {
-		
+		return null;
 	}
 }
