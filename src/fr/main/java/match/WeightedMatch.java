@@ -8,8 +8,15 @@ public class WeightedMatch extends Match {
 
 	public WeightedMatch(List<Competitor> competitors) {
 		super(competitors);
+
 	}
-	public Competitor playMatch() {
-		return null;
+	
+	public void playMatch() {
+	}
+
+	@Override
+	public double playerOneWinningChances() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

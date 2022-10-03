@@ -6,11 +6,15 @@ import fr.main.java.Competitor;
 
 public class RiggedMatch extends Match {
 	
-	public RiggedMatch(List<Competitor> competitors) {
+	private double playerOneChance;
+	
+	public RiggedMatch(List<Competitor> competitors, double playerOneChance) {
 		super(competitors);
+		this.playerOneChance = playerOneChance;
 	}
 	
-	public Competitor playMatch() {
-		return null;
+	@Override
+	public double playerOneWinningChances() {
+		return this.playerOneChance;
 	}
 }
