@@ -11,5 +11,16 @@ public class Math {
 	public static boolean isPowerOfTwo(int number) {
 		return (number != 0) && ((number & (number - 1)) == 0);
 	}
+
+	/**
+	 * Return true if the number is included in the probability's threshold
+	 * @param value
+	 * @param probability
+	 * @param threshold
+	 * @return
+	 */
+	public static boolean inTreshold(double value, double probability, double threshold) {
+		return (probability - threshold) < value && value < (probability + value) ; 
+	}
 	
 }
