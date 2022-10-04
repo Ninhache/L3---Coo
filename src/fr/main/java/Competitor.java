@@ -1,11 +1,15 @@
 package fr.main.java;
 
-public class Competitor implements Comparable {
+import java.util.UUID;
+
+public class Competitor implements Comparable<Competitor> {
 
 	private String name;
 	private int wins;
+	private final UUID uuid; 
 	
 	public Competitor(String name) {
+		this.uuid = UUID.randomUUID();
 		this.name = name;
 		this.wins = 0;
 	}
@@ -15,9 +19,12 @@ public class Competitor implements Comparable {
 	}
 
 	@Override
-	public int compareTo(Object arg0) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int compareTo(Competitor arg0) {
+		return this.uuid.compareTo(arg0.getUuid());
+	}
+	
+	public UUID getUuid() {
+		return uuid;
 	}
 	
 	public String getName() {

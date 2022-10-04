@@ -10,18 +10,9 @@ import fr.main.java.Competitor;
 public abstract class Match {
 	
 	protected List<Competitor> competitors;
-	protected Random random;
+	protected Random random = new Random();
 	
 	protected Competitor winner, looser;
-	
-	public Match(List<Competitor> competitors) {
-		this.competitors = competitors;
-		this.random = new Random();
-	}
-	
-	public Match(Competitor c1, Competitor c2) {
-		this(Arrays.asList(c1, c2));
-	}
 	
 	public List<Competitor> getCompetitors() {
 		return competitors;
@@ -66,5 +57,13 @@ public abstract class Match {
 			this.playMatch();
 		}
 		return looser;
+	}
+	
+	public Competitor getPlayer1() {
+		return this.competitors.get(0);
+	}
+	
+	public Competitor getPlayer2() {
+		return this.competitors.get(1);
 	}
 }
