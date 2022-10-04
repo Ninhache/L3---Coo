@@ -1,31 +1,25 @@
 package fr.test.java.match;
 
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.*;
-
 import fr.main.java.Competitor;
-import fr.main.java.match.Match;
+import fr.main.java.exceptions.MatchIllegalCompetitorsSize;
+import fr.main.java.exceptions.MatchSamePlayerException;
+import fr.main.java.match.AbstractMatch;
 
 import fr.main.java.util.Math;
 
 public abstract class testMatch {
 	
-	protected Match match;
-	// protected abstract
-	/*
-	 * 
-	 * valeur théorique de victoire genre 50%
-	 * 
-	 * */
+	protected AbstractMatch match;
 	protected double precisionThreshold = 0.5;
 	
 	protected abstract void generateMatch(List<Competitor> competitors);
@@ -41,7 +35,7 @@ public abstract class testMatch {
 	}
 
 	@Test
-	void testPlayersAreStillTheSame() {
+	public void testPlayersAreStillTheSame() {
 		Competitor c1 = new Competitor("Bob");
 		Competitor c2 = new Competitor("Alice");
 		
@@ -49,15 +43,15 @@ public abstract class testMatch {
 		
 		this.match.playMatch();
 		
-		assertEquals(c1, this.match.getPlayer1());
-		assertNotEquals(c1, this.match.getPlayer2());
+		assertSame(c1, this.match.getPlayer1());
+		assertNotSame(c1, this.match.getPlayer2());
 		
-		assertEquals(c2, this.match.getPlayer2());
-		assertNotEquals(c2, this.match.getPlayer1());
+		assertSame(c2, this.match.getPlayer2());
+		assertNotSame(c2, this.match.getPlayer1());
 	}
 	
 	@Test
-	void testWinningProbabilities() {
+	public void testWinningProbabilities() {
 		Competitor c1 = new Competitor("Bob");
 		Competitor c2 = new Competitor("Alice");
 		
@@ -79,6 +73,35 @@ public abstract class testMatch {
 		double p1Percentage = (float)p1Wins / (float)iter;
 		
 		assertTrue(Math.inTreshold(p1Percentage, this.match.playerOneWinningChances(), this.precisionThreshold));
+	}
+	
+	@Test
+	public void testWinnerGetAWin() {
+		Competitor c1 = new Competitor("Bob");
+		Competitor c2 = new Competitor("Alice");
+		
+		this.generateMatch(c1, c2);
+		
+		this.match.playMatch();
+		
+		// XOR
+		assertTrue((c1.getWins() == 0 && c2.getWins() == 1) || (c1.getWins() == 1 && c2.getWins() == 0));  
+	}
+	
+	@Test(expected=MatchIllegalCompetitorsSize.class)
+	public void testIllegalSize() {
+		Competitor c1 = new Competitor("Bob");
+		Competitor c2 = new Competitor("Alice");
+		Competitor c3 = new Competitor("Thomas");
+		
+		this.generateMatch(Arrays.asList(c1, c2, c3));
+	}
+	
+	@Test(expected=MatchSamePlayerException.class)
+	public void testIllegalCompetitors() {
+		Competitor c1 = new Competitor("Bob");
+		
+		this.generateMatch(Arrays.asList(c1, c1));
 	}
 	
 }
