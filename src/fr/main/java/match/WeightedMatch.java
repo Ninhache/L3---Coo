@@ -5,10 +5,10 @@ import java.util.List;
 
 import fr.main.java.Competitor;
 
-public class WeightedMatch extends Match {
+public class WeightedMatch extends AbstractMatch {
 
 	public WeightedMatch(List<Competitor> competitors) {
-		this.competitors = competitors;
+		super(competitors);
 	}
 	
 	public WeightedMatch(Competitor c1, Competitor c2) {

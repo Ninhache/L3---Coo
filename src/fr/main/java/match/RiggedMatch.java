@@ -5,12 +5,12 @@ import java.util.List;
 
 import fr.main.java.Competitor;
 
-public class RiggedMatch extends Match {
+public class RiggedMatch extends AbstractMatch {
 	
 	private double playerOneChance;
 	
 	public RiggedMatch(List<Competitor> competitors, double playerOneChance) {
-		this.competitors = competitors;
+		super(competitors);
 		this.playerOneChance = playerOneChance;
 	}
 	

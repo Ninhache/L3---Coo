@@ -5,10 +5,10 @@ import java.util.List;
 
 import fr.main.java.Competitor;
 
-public class RandomMatch extends Match {
+public class RandomMatch extends AbstractMatch {
 
 	public RandomMatch(List<Competitor> competitors) {
-		this.competitors = competitors;
+		super(competitors);
 	}
 	
 	public RandomMatch(Competitor c1, Competitor c2) {
