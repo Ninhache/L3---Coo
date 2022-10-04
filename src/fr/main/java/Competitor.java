@@ -1,5 +1,6 @@
 package fr.main.java;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class Competitor implements Comparable<Competitor> {
@@ -15,12 +16,12 @@ public class Competitor implements Comparable<Competitor> {
 	}
 
 	public void addWin() {
-		
+		this.setWins(this.getWins() + 1);
 	}
 
 	@Override
 	public int compareTo(Competitor arg0) {
-		return this.uuid.compareTo(arg0.getUuid());
+		return this.wins - arg0.getWins();
 	}
 	
 	public UUID getUuid() {
@@ -42,5 +43,23 @@ public class Competitor implements Comparable<Competitor> {
 	public void setWins(int wins) {
 		this.wins = wins;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name, uuid, wins);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Competitor other = (Competitor) obj;
+		return Objects.equals(name, other.name) && Objects.equals(uuid, other.uuid) && wins == other.wins;
+	}
+	
 	
 }
