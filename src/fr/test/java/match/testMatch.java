@@ -1,6 +1,8 @@
 package fr.test.java.match;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,7 +30,6 @@ public abstract class testMatch {
 	
 	protected abstract void generateMatch(List<Competitor> competitors);
 	protected abstract void generateMatch(Competitor c1, Competitor c2);
-	protected abstract double playerOneWinningChances();
 	
 	@BeforeEach
 	protected void init() {
@@ -38,12 +39,29 @@ public abstract class testMatch {
 		
 		this.generateMatch(competitors);
 	}
-	
+
 	@Test
-	void testPlayerOneWinningProbability() {
-		
+	void testPlayersAreStillTheSame() {
 		Competitor c1 = new Competitor("Bob");
 		Competitor c2 = new Competitor("Alice");
+		
+		this.generateMatch(c1,c2);
+		
+		this.match.playMatch();
+		
+		assertEquals(c1, this.match.getPlayer1());
+		assertNotEquals(c1, this.match.getPlayer2());
+		
+		assertEquals(c2, this.match.getPlayer2());
+		assertNotEquals(c2, this.match.getPlayer1());
+	}
+	
+	@Test
+	void testWinningProbabilities() {
+		Competitor c1 = new Competitor("Bob");
+		Competitor c2 = new Competitor("Alice");
+		
+		this.generateMatch(Arrays.asList(c1, c2));
 		
 		int iter = 1000;
 		
@@ -58,12 +76,9 @@ public abstract class testMatch {
 			}
 		}
 		
-		float p1Percentage = p1Wins / iter;
-		System.out.println(String.format("player 1 did %d wins => %f", p1Wins, p1Percentage));
-		// assertTrue();
-		// assertTrue()
-		System.out.println(Math.inTreshold(p1Percentage, this.playerOneWinningChances(), this.precisionThreshold));
-		assertTrue(Math.inTreshold(p1Percentage, this.playerOneWinningChances(), this.precisionThreshold));
+		double p1Percentage = (float)p1Wins / (float)iter;
+		
+		assertTrue(Math.inTreshold(p1Percentage, this.match.playerOneWinningChances(), this.precisionThreshold));
 	}
 	
 }

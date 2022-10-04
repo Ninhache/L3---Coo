@@ -17,9 +17,4 @@ public class testRandomMatch extends testMatch {
 		this.match = new RandomMatch(c1, c2);
 	}
 
-	@Override
-	protected double playerOneWinningChances() {
-		return 0.5;
-	}
-
 }
