@@ -14,15 +14,13 @@ public abstract class Competition {
 	}
 
 	public void play() {
-
-	}
-
-	protected void play(List<Competitor> competitors) {
 		
 	}
 
-	protected void playMatch(List<Competitor> competitors) {
+	abstract protected void play(List<Competitor> competitors);
 
+	protected void playMatch(List<Competitor> competitors) {
+	
 	}
 	
 	public Map<Competitor,Integer> ranking(){
