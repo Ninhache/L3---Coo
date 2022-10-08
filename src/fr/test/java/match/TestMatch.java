@@ -17,7 +17,7 @@ import fr.main.java.match.AbstractMatch;
 
 import fr.main.java.util.Math;
 
-public abstract class testMatch {
+public abstract class TestMatch {
 	
 	protected AbstractMatch match;
 	protected double precisionThreshold = 0.5;
