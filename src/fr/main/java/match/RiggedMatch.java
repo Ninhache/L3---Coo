@@ -9,6 +9,10 @@ public class RiggedMatch extends AbstractMatch {
 	
 	private double playerOneChance;
 	
+	public RiggedMatch() {
+		super();
+	}
+	
 	public RiggedMatch(List<Competitor> competitors, double playerOneChance) {
 		super(competitors);
 		this.playerOneChance = playerOneChance;

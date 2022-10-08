@@ -1,6 +1,5 @@
 package fr.main.java.match;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -17,8 +16,16 @@ public abstract class AbstractMatch {
 	
 	protected Competitor winner, looser;
 	
-	protected AbstractMatch(List<Competitor> competitors) throws AbstractMatchExceptions {
+	protected AbstractMatch(List<Competitor> competitors){
 		this.competitors = competitors;
+	}
+	
+	protected AbstractMatch() {
+		this(null);
+	}
+	
+	public void setCompetitors(List<Competitor> competitors) throws AbstractMatchExceptions {
+		this.competitors=competitors;
 		
 		if (this.competitors.size() != 2) {
 			throw new MatchIllegalCompetitorsSize(this.competitors.size());
