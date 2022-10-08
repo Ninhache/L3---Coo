@@ -3,7 +3,7 @@ package fr.main.java.util;
 public class Math {
 
 	/**
-	 *	Return true if the number passed in parameter is a power of two
+	 * Return true if the number passed in parameter is a power of two
 	 * 
 	 * @param number
 	 * @return
