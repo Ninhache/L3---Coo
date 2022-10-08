@@ -12,7 +12,7 @@ import fr.main.java.competition.Competition;
 import fr.main.java.exceptions.CompetitionIllegalCompetitorsSize;
 import fr.main.java.match.RandomMatch;
 
-public class CompetitionTest {
+public abstract class CompetitionTest {
 	
 	
 	@Test(expected=CompetitionIllegalCompetitorsSize.class)
@@ -33,4 +33,7 @@ public class CompetitionTest {
 		mockCompetition.setMatch(randomMatch);
 		assertSame(randomMatch, mockCompetition.getMatch());
 	}	
+	
+	@Test
+	public abstract void testRightCountOfMatches() throws CompetitionIllegalCompetitorsSize;
 }
