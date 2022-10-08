@@ -10,6 +10,7 @@ import fr.main.java.match.AbstractMatch;
 public abstract class Competition {
 	private final List<Competitor> competitors;
 	private AbstractMatch match;
+	private int nbMatch = 0; 
 	
 	public Competition(List<Competitor> competitors, AbstractMatch match) throws CompetitionIllegalCompetitorsSize {
 		this.competitors = competitors;
@@ -22,13 +23,25 @@ public abstract class Competition {
 	}
 
 	public void play() {
-		
+		this.play(this.competitors);
 	}
 
 	abstract protected void play(List<Competitor> competitors);
 
 	protected void playMatch(List<Competitor> competitors) {
-	
+		this.nbMatch++;
+		match.setCompetitors(competitors);
+		match.playMatch();
+		StringBuilder message = new StringBuilder();
+		message.append(competitors.get(0));
+		for(int i=1;i<competitors.size();i++){
+			message.append(" vs ");
+			message.append(competitors.get(i));
+		}
+		message.append(" --> ");
+		message.append(match.getWinner());
+		message.append(" wins!");
+		System.out.println(message);
 	}
 	
 	public Map<Competitor,Integer> ranking(){
@@ -41,5 +54,9 @@ public abstract class Competition {
 
 	public AbstractMatch getMatch() {
 		return this.match;
+	}
+	
+	public int getNbMatch() {
+		return this.nbMatch;
 	}
 }
