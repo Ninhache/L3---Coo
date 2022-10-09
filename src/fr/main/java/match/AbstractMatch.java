@@ -72,7 +72,7 @@ public abstract class AbstractMatch {
 	}
 	
 	/**
-	 * /!\ Function can be useless if competitors are not equals to two /!\
+	 * Function can be useless if competitors are not equals to two
 	 * 
 	 * Return the probability that player 1 wins
 	 * 
