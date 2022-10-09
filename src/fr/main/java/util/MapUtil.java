@@ -7,9 +7,20 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
+/**
+ * 
+ * @author ambre
+ *
+ */
 public class MapUtil {
 	
+	/**
+	 * Sort a map by descending value.
+	 * @param <K>
+	 * @param <V> Integer
+	 * @param map map to sort
+	 * @return map sorted by descending value
+	 */
 	public static <K, V extends Comparable<? super V>> Map<K, V> sortByDescendingValue(Map<K, V> map) {
 		List<Entry<K, V>> sortedEntries = new ArrayList<Entry<K, V>>(map.entrySet());
 		Collections.sort( sortedEntries , new Comparator<Entry<K, V>>() {
