@@ -17,7 +17,7 @@ git clone git@gitlab-etu.fil.univ-lille.fr:neo.almeida.etu/l3s5g7-coo-almeida-bo
 To generate project's documentation, you just have to execute theses commands :
 
 ```
-find src/fr/main -type f -name "*.java" | xargs javadoc -d doc/
+javadoc -sourcepath src -subpackages fr.main.java
 ```
 
 ### 2.3 Generate sources
@@ -37,12 +37,14 @@ java -classpath bin fr.main.java.HelloWorld
 ### 2.5 Generate tests
 Root folder
 ```
-javac -cp .\dependencies\junit-platform-console-standalone-1.9.0.jar -sourcepath src .\src\fr\test\java\*.java -d .\bin\
+javac -cp .\dependencies\junit-platform-console-standalone-1.9.0.jar -sourcepath src .\src\fr\test\java\*.java -d .\bin
 ```
 
 ### 2.6 Execute tests
 
+```
 java -jar .\dependencies\junit-platform-console-standalone-1.9.0.jar -class-path bin --scan-class-path
+```
 
 ### 2.7 Generate JAR 
 
