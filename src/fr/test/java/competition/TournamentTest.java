@@ -1,5 +1,6 @@
 package fr.test.java.competition;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
@@ -8,7 +9,6 @@ import java.util.List;
 import org.junit.Test;
 
 import fr.main.java.Competitor;
-import fr.main.java.competition.League;
 import fr.main.java.competition.Tournament;
 import fr.main.java.exceptions.competitions.CompetitionIllegalCompetitorsSize;
 import fr.main.java.exceptions.competitions.TournamentIllegalCompetitorsSize;

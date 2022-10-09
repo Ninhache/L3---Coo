@@ -4,44 +4,43 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import fr.main.java.util.Math;
 import fr.main.java.competition.Competition;
 import fr.main.java.competition.League;
 import fr.main.java.competition.Tournament;
-import fr.main.java.exceptions.CompetitionIllegalCompetitorsSize;
-import fr.main.java.exceptions.TournamentIllegalCompetitorsSize;
+import fr.main.java.exceptions.competitions.CompetitionIllegalCompetitorsSize;
+import fr.main.java.exceptions.competitions.TournamentIllegalCompetitorsSize;
 import fr.main.java.match.RandomMatch;
+import fr.main.java.util.Math;
 
 public class Main {
 
 	public static void main(String[] args) {
-		int competition=-1, nbCompetitors=-1;
-		Competition c;
+		int typeCompet = -1;
+		int nbCompetitors = -1;
+		Competition competition;
 		RandomMatch match = new RandomMatch();
 		Scanner sc = new Scanner(System.in);
 		
 		try {
-			competition=getNbCompetition(sc);
-			nbCompetitors=getNbCompetitors(competition,sc);
+			typeCompet = getNbCompetition(sc);
+			nbCompetitors = getNbCompetitors(typeCompet,sc);
 			sc.close();
 			
-			
 			List<Competitor> competitors = new ArrayList<>();
-			for(int i=0;i<nbCompetitors;i++) {
+			for (int i = 0; i < nbCompetitors; i++) {
 				competitors.add(new Competitor("Player"+i));
 			}
 
-			if(competition==1)
-				c = new League(competitors,match);
-			else 
-				c = new Tournament(competitors,match);
+			if (typeCompet == 1) {
+				competition = new League(competitors,match);
+			} else {
+				competition = new Tournament(competitors,match);
+			}
 			
-			c.play();
+			competition.play();
 		} catch (CompetitionIllegalCompetitorsSize e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (TournamentIllegalCompetitorsSize e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -68,23 +67,23 @@ public class Main {
 	private static int getNbCompetitors(int competition, Scanner sc) {
 		System.out.println("Choose the number of competitors (min 2) :");
 		
-		int nbCompetitors=-1;
+		int nbCompetitors = -1;
 		
-		if(competition==2) {
-			while(!Math.isPowerOfTwo(nbCompetitors)&& nbCompetitors<2) {
+		if (competition == 2) {
+			while(!Math.isPowerOfTwo(nbCompetitors) || nbCompetitors < 2) {
 				try {					
 					System.out.println("The number must be a power of two!!");
 					nbCompetitors = sc.nextInt();
-				}catch(Exception e) {
+				} catch(Exception e) {
 					sc.next();
 					continue;
 				}
 			}
-		}else {
-			while(nbCompetitors<2) {
+		} else {
+			while(nbCompetitors < 2) {
 				try {
 					nbCompetitors = sc.nextInt();					
-				}catch(Exception e) {
+				} catch(Exception e) {
 					sc.next();
 					continue;
 				}
