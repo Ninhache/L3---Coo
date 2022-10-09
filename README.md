@@ -73,7 +73,7 @@ jar -cvfe Program.jar fr.main.java.Main -C bin .
 To execute the JAR, you just have to execute theses commands :  
 ```
 # LINUX
-
+java -jar ./Program.jar
 
 # WINDOWS
 java -jar .\Program.jar
