@@ -7,6 +7,10 @@ import fr.main.java.Competitor;
 
 public class WeightedMatch extends AbstractMatch {
 
+	public WeightedMatch() {
+		super();
+	}
+	
 	public WeightedMatch(List<Competitor> competitors) {
 		super(competitors);
 	}

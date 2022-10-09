@@ -60,6 +60,11 @@ public class Competitor implements Comparable<Competitor> {
 		Competitor other = (Competitor) obj;
 		return Objects.equals(name, other.name) && Objects.equals(uuid, other.uuid) && wins == other.wins;
 	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
 	
 	
 }

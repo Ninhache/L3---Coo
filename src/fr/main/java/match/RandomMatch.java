@@ -7,6 +7,10 @@ import fr.main.java.Competitor;
 
 public class RandomMatch extends AbstractMatch {
 
+	public RandomMatch() {
+		super();
+	}
+	
 	public RandomMatch(List<Competitor> competitors) {
 		super(competitors);
 	}

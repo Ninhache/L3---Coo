@@ -17,9 +17,18 @@ public abstract class AbstractMatch {
 	
 	protected Competitor winner, looser;
 	
-	protected AbstractMatch(List<Competitor> competitors) throws AbstractMatchExceptions {
+	protected AbstractMatch(List<Competitor> competitors){
 		this.competitors = competitors;
-		
+	}
+	
+	protected AbstractMatch() {
+		this(null);
+	}
+	
+	public void setCompetitors(List<Competitor> competitors) throws AbstractMatchExceptions {
+		this.competitors=competitors;
+		this.winner=null;
+		this.looser=null;
 		if (this.competitors.size() != 2) {
 			throw new MatchIllegalCompetitorsSize(this.competitors.size());
 		}
@@ -27,6 +36,10 @@ public abstract class AbstractMatch {
 		if (this.competitors.get(0).equals(this.competitors.get(1))) {
 			throw new MatchSamePlayerException();
 		}
+	}
+	
+	public void setCompetitors(Competitor c1, Competitor c2) {
+		this.setCompetitors(Arrays.asList(c1,c2));
 	}
 	
 	public List<Competitor> getCompetitors() {
