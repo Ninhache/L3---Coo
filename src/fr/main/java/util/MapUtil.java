@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 /**
  * 
- * @author ambre
+ * @author ambre.boussert.etu@univ-lille.fr
  *
  */
 public class MapUtil {

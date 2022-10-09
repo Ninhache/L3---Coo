@@ -3,18 +3,18 @@ package fr.test.java.match;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
-import fr.main.java.Competitor;
-import fr.main.java.exceptions.MatchIllegalCompetitorsSize;
-import fr.main.java.exceptions.MatchSamePlayerException;
-import fr.main.java.match.AbstractMatch;
+import org.junit.Test;
 
+import fr.main.java.Competitor;
+import fr.main.java.exceptions.match.MatchIllegalCompetitorsSize;
+import fr.main.java.exceptions.match.MatchSamePlayerException;
+import fr.main.java.match.AbstractMatch;
 import fr.main.java.util.Math;
 
 public abstract class TestMatch {
@@ -24,15 +24,6 @@ public abstract class TestMatch {
 	
 	protected abstract void generateMatch(List<Competitor> competitors);
 	protected abstract void generateMatch(Competitor c1, Competitor c2);
-	
-	@BeforeEach
-	protected void init() {
-		List<Competitor> competitors = new ArrayList<>(
-			Arrays.asList(new Competitor("Bob"), new Competitor("Alice")
-		));
-		
-		this.generateMatch(competitors);
-	}
 
 	@Test
 	public void testPlayersAreStillTheSame() {
@@ -87,6 +78,30 @@ public abstract class TestMatch {
 		// XOR
 		assertTrue((c1.getWins() == 0 && c2.getWins() == 1) || (c1.getWins() == 1 && c2.getWins() == 0));  
 	}
+	
+	@Test
+	public void testCantStartMatchMultipleTime() {
+		Competitor c1 = new Competitor("Bob");
+		Competitor c2 = new Competitor("Alice");
+		
+		this.generateMatch(c1, c2);
+		
+		this.match.playMatch();
+		Competitor winner = this.match.getWinner();
+		Competitor looser = this.match.getLooser();
+		
+		int iter = 1000;
+		for (int i = 0 ; i < iter ; i ++) {
+			assertEquals(winner, this.match.getWinner());
+			assertEquals(looser, this.match.getLooser());
+			
+			assertNotEquals(winner, this.match.getLooser());
+			assertNotEquals(looser, this.match.getWinner());
+		}
+		
+		
+	}
+	
 	
 	@Test(expected=MatchIllegalCompetitorsSize.class)
 	public void testIllegalSize() {

@@ -1,8 +1,8 @@
-package fr.main.java.exceptions;
+package fr.main.java.exceptions.competitions;
 
 /**
  * Exception for the competition.
- * @author ambre
+ * @author ambre.boussert.etu@univ-lille.fr
  *
  */
 public class CompetitionIllegalCompetitorsSize extends Exception {

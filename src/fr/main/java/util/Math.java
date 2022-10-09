@@ -1,5 +1,10 @@
 package fr.main.java.util;
 
+/**
+ * 
+ * @author neo.almeida.etu@univ-lille.fr
+ *
+ */
 public class Math {
 
 	/**

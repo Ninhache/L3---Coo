@@ -3,6 +3,12 @@ package fr.main.java;
 import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * 
+ * @author neo.almeida.etu@univ-lille.fr
+ * @author ambre.boussert.etu@univ-lille.fr
+ *
+ */
 public class Competitor implements Comparable<Competitor> {
 
 	private String name;
@@ -20,8 +26,8 @@ public class Competitor implements Comparable<Competitor> {
 	}
 
 	@Override
-	public int compareTo(Competitor arg0) {
-		return this.wins - arg0.getWins();
+	public int compareTo(Competitor other) {
+		return this.wins - other.getWins();
 	}
 	
 	public UUID getUuid() {

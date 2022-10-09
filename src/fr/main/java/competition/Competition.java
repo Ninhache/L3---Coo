@@ -1,23 +1,22 @@
 package fr.main.java.competition;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import fr.main.java.Competitor;
-import fr.main.java.exceptions.CompetitionIllegalCompetitorsSize;
+import fr.main.java.exceptions.competitions.CompetitionIllegalCompetitorsSize;
 import fr.main.java.match.AbstractMatch;
 import fr.main.java.util.MapUtil;
 
 /**
  * Represents a competition.
- * @author ambre
+ * @author ambre.boussert.etu@univ-lille.fr
  *
  */
 public abstract class Competition {
 	/**
-	 * List of competitors participating in the competition.
+	 * List of competitors taking part in the competition.
 	 */
 	private final List<Competitor> competitors;
 	/**
@@ -67,23 +66,15 @@ public abstract class Competition {
 	abstract protected void play(List<Competitor> competitors);
 
 	/**
-	 * Play a match between competitors given in parameters.
+	 * Play a match between competitors given in parameters and display it
 	 * @param competitors the list of competitors to use in a match
 	 */
 	protected void playMatch(List<Competitor> competitors) {
 		this.nbMatch++;
 		match.setCompetitors(competitors);
 		match.playMatch();
-		StringBuilder message = new StringBuilder();
-		message.append(competitors.get(0));
-		for(int i=1;i<competitors.size();i++){
-			message.append(" vs ");
-			message.append(competitors.get(i));
-		}
-		message.append(" --> ");
-		message.append(match.getWinner());
-		message.append(" wins!");
-		System.out.println(message);
+		
+		System.out.println(this);
 	}
 	
 	/**
@@ -132,4 +123,21 @@ public abstract class Competition {
 	public int getNbMatch() {
 		return this.nbMatch;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder message = new StringBuilder();
+		message.append(competitors.get(0));
+		for(int i=1;i<competitors.size();i++){
+			message.append(" vs ");
+			message.append(competitors.get(i));
+		}
+		message.append(" --> ");
+		message.append(match.getWinner());
+		message.append(" wins!");
+		System.out.println(message);
+		
+		return message.toString();
+	}
+	
 }

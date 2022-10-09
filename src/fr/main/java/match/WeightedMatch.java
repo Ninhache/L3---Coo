@@ -25,7 +25,6 @@ public class WeightedMatch extends AbstractMatch {
 
 	@Override
 	public double playerOneWinningChances() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }

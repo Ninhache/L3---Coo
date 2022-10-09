@@ -10,8 +10,8 @@ import org.junit.Test;
 import fr.main.java.Competitor;
 import fr.main.java.competition.League;
 import fr.main.java.competition.Tournament;
-import fr.main.java.exceptions.CompetitionIllegalCompetitorsSize;
-import fr.main.java.exceptions.TournamentIllegalCompetitorsSize;
+import fr.main.java.exceptions.competitions.CompetitionIllegalCompetitorsSize;
+import fr.main.java.exceptions.competitions.TournamentIllegalCompetitorsSize;
 import fr.main.java.match.RandomMatch;
 import fr.main.java.util.Math;
 

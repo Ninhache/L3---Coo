@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.main.java.Competitor;
-import fr.main.java.exceptions.CompetitionIllegalCompetitorsSize;
+import fr.main.java.exceptions.competitions.CompetitionIllegalCompetitorsSize;
 import fr.main.java.match.AbstractMatch;
 
 /**
  * Represents a league.
- * @author ambre
+ * @author ambre.boussert.etu@univ-lille.fr
  *
  */
 public class League extends Competition {

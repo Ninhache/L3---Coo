@@ -5,18 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 
 import fr.main.java.Competitor;
 import fr.main.java.competition.Competition;
-import fr.main.java.exceptions.CompetitionIllegalCompetitorsSize;
+import fr.main.java.exceptions.competitions.CompetitionIllegalCompetitorsSize;
 import fr.main.java.match.RandomMatch;
 
 public abstract class CompetitionTest {
 	
-	
 	@Test(expected=CompetitionIllegalCompetitorsSize.class)
-	public void testLessThanTwoPlayers() throws CompetitionIllegalCompetitorsSize{
+	public void testLessThanTwoPlayers() throws CompetitionIllegalCompetitorsSize {
 		List<Competitor> compet = new ArrayList<>();
 		Competition competition = new MockCompetition(compet);
 	}
