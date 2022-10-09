@@ -31,7 +31,7 @@ javac -sourcepath src ./src/fr/main/java/*.java -d ./bin
 
 Root folder
 ```
-java -classpath bin fr.main.java.HelloWorld
+java -classpath bin fr.main.java.Main
 ```
 
 ### 2.5 Generate tests
@@ -50,7 +50,7 @@ java -jar .\dependencies\junit-platform-console-standalone-1.9.0.jar -class-path
 
 To generate project's JAR, you just have to execute theses commands :
 ```
-jar -cvfe Program.jar fr.main.java.HelloWorld -C bin .
+jar -cvfe Program.jar fr.main.java.Main -C bin .
 ```
 
 ### 2.8 Execute JAR
