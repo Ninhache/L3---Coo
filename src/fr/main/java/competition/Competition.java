@@ -71,10 +71,11 @@ public abstract class Competition {
 	 */
 	protected void playMatch(List<Competitor> competitors) {
 		this.nbMatch++;
-		match.setCompetitors(competitors);
-		match.playMatch();
 		
-		System.out.println(this);
+		this.match.setCompetitors(competitors);
+		this.match.playMatch();
+		
+		System.out.println(this.match);
 	}
 	
 	/**

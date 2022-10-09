@@ -100,13 +100,21 @@ public abstract class AbstractMatch {
 		}
 	}
 	
-	public Competitor getWinner() {
+	/**
+	 * Return the winner of the match, if he's not defined, the match is played
+	 * @return Winner
+	 */
+	public Competitor getWinner() { 
 		if (winner == null) {
 			this.playMatch();
 		}
 		return winner;
 	}
 	
+	/**
+	 * Return the looser of the match, if he's not defined, the match is played
+	 * @return Looser
+	 */
 	public Competitor getLooser() {
 		if (looser == null) {
 			this.playMatch();
@@ -114,11 +122,24 @@ public abstract class AbstractMatch {
 		return looser;
 	}
 	
+	/**
+	 * Return the first player
+	 * @return player1
+	 */
 	public Competitor getPlayer1() {
 		return Objects.requireNonNull(this.competitors.get(0));
 	}
 	
+	/**
+	 * Return the second player
+	 * @return player2
+	 */
 	public Competitor getPlayer2() {
 		return Objects.requireNonNull(this.competitors.get(1));
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("%s VS %s --> %s", this.getPlayer1(), this.getPlayer2(), this.getWinner());
 	}
 }
