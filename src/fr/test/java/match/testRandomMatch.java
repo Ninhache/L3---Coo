@@ -9,12 +9,14 @@ public class testRandomMatch extends testMatch {
 
 	@Override
 	protected void generateMatch(List<Competitor> competitors) {
-		this.match = new RandomMatch(competitors);
+		this.match = new RandomMatch();
+		this.match.setCompetitors(competitors);
 	}
 	
 	@Override
 	protected void generateMatch(Competitor c1, Competitor c2) {
-		this.match = new RandomMatch(c1, c2);
+		this.match = new RandomMatch();
+		this.match.setCompetitors(c1,c2);
 	}
 
 }

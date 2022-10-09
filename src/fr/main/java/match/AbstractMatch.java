@@ -1,5 +1,6 @@
 package fr.main.java.match;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -35,6 +36,10 @@ public abstract class AbstractMatch {
 		if (this.competitors.get(0).equals(this.competitors.get(1))) {
 			throw new MatchSamePlayerException();
 		}
+	}
+	
+	public void setCompetitors(Competitor c1, Competitor c2) {
+		this.setCompetitors(Arrays.asList(c1,c2));
 	}
 	
 	public List<Competitor> getCompetitors() {
