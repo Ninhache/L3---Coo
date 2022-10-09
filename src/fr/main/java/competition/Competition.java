@@ -1,11 +1,14 @@
 package fr.main.java.competition;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import fr.main.java.Competitor;
 import fr.main.java.exceptions.CompetitionIllegalCompetitorsSize;
 import fr.main.java.match.AbstractMatch;
+import fr.main.java.util.MapUtil;
 
 public abstract class Competition {
 	private final List<Competitor> competitors;
@@ -24,6 +27,8 @@ public abstract class Competition {
 
 	public void play() {
 		this.play(this.competitors);
+		
+		this.displayRanking();
 	}
 
 	abstract protected void play(List<Competitor> competitors);
@@ -45,7 +50,21 @@ public abstract class Competition {
 	}
 	
 	public Map<Competitor,Integer> ranking(){
-		return null;
+		Map<Competitor,Integer> rank = new HashMap<Competitor,Integer>();
+		for(Competitor c: competitors) {
+			rank.put(c,c.getWins());			
+		}
+		return MapUtil.sortByDescendingValue(rank);
+	}
+	
+	private void displayRanking() {
+		System.out.println();
+		System.out.println("*** Ranking ***");
+		Map<Competitor,Integer> rank = ranking();
+		for(Map.Entry<Competitor, Integer> entry : rank.entrySet()) {
+			System.out.println(entry.getKey() + " - " + entry.getValue());
+		}
+		System.out.println();
 	}
 	
 	public void setMatch(AbstractMatch match) {

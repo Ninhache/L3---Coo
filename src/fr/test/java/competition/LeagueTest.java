@@ -17,17 +17,20 @@ public class LeagueTest extends CompetitionTest {
 	@Test
 	public void testRightCountOfMatches() throws CompetitionIllegalCompetitorsSize {
 		RandomMatch match = new RandomMatch();
-		List<Competitor> competitors = new ArrayList<>();
+		List<Competitor> competitors1 = new ArrayList<>();
 		for(int i=0;i<3;i++) {
-			competitors.add(new Competitor("Player"+i));
+			competitors1.add(new Competitor("Player"+i));
 		}
-		League l1 = new League(competitors, match);
+		League l1 = new League(competitors1, match);
 		l1.play();
 		
 		assertEquals(6,l1.getNbMatch());
 		
-		competitors.add(new Competitor("Player4"));
-		League l2 = new League(competitors, match);
+		List<Competitor> competitors2 = new ArrayList<>();
+		for(int i=0;i<4;i++) {
+			competitors2.add(new Competitor("Player"+i));
+		}
+		League l2 = new League(competitors2, match);
 		l2.play();
 		
 		assertEquals(12,l2.getNbMatch());
