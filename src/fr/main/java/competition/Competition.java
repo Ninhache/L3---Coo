@@ -125,20 +125,4 @@ public abstract class Competition {
 		return this.nbMatch;
 	}
 	
-	@Override
-	public String toString() {
-		StringBuilder message = new StringBuilder();
-		message.append(competitors.get(0));
-		for(int i=1;i<competitors.size();i++){
-			message.append(" vs ");
-			message.append(competitors.get(i));
-		}
-		message.append(" --> ");
-		message.append(match.getWinner());
-		message.append(" wins!");
-		System.out.println(message);
-		
-		return message.toString();
-	}
-	
 }
