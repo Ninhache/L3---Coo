@@ -26,7 +26,8 @@ public abstract class AbstractMatch {
 	
 	public void setCompetitors(List<Competitor> competitors) throws AbstractMatchExceptions {
 		this.competitors=competitors;
-		
+		this.winner=null;
+		this.looser=null;
 		if (this.competitors.size() != 2) {
 			throw new MatchIllegalCompetitorsSize(this.competitors.size());
 		}
