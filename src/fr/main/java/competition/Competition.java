@@ -1,8 +1,10 @@
 package fr.main.java.competition;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import fr.main.java.Competitor;
 import fr.main.java.exceptions.competitions.CompetitionIllegalCompetitorsSize;
@@ -93,14 +95,13 @@ public abstract class Competition {
 	/**
 	 * Display ranking.
 	 */
-	private void displayRanking() {
+	protected void displayRanking() {
 		System.out.println();
 		System.out.println("*** Ranking ***");
 		Map<Competitor,Integer> rank = ranking();
 		for(Map.Entry<Competitor, Integer> entry : rank.entrySet()) {
 			System.out.println(entry.getKey() + " - " + entry.getValue());
 		}
-		System.out.println();
 	}
 	
 	/**
@@ -123,6 +124,26 @@ public abstract class Competition {
 	 */
 	public int getNbMatch() {
 		return this.nbMatch;
+	}
+	
+	public Competitor getWinner() {
+		Map<Competitor, Integer> ranks = this.ranking();
+		Optional<Integer> maxWins = ranks.values().stream().max(Integer::max);
+		int max = maxWins.get();
+		List<Competitor> exWinners = new ArrayList<>();
+		ranks.forEach((key, value)-> {
+			if (value == max) {
+				exWinners.add(key);
+			}
+		});
+		
+		if (exWinners.size() > 1) {
+			this.play(exWinners);
+			return getWinner();
+		}
+		this.displayRanking();
+		
+		return exWinners.get(0);
 	}
 	
 }

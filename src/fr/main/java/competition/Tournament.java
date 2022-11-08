@@ -22,7 +22,7 @@ public class Tournament extends Competition {
 	 * @throws TournamentIllegalCompetitorsSize
 	 * @throws CompetitionIllegalCompetitorsSize
 	 */
-	public Tournament(List<Competitor> competitors,AbstractMatch match) throws TournamentIllegalCompetitorsSize, CompetitionIllegalCompetitorsSize {
+	public Tournament(List<Competitor> competitors, AbstractMatch match) throws TournamentIllegalCompetitorsSize, CompetitionIllegalCompetitorsSize {
 		super(competitors,match);
 		if(!Math.isPowerOfTwo(competitors.size()))
 			throw new TournamentIllegalCompetitorsSize();
@@ -46,10 +46,10 @@ public class Tournament extends Competition {
 	protected void play(List<Competitor> competitors) {
 		// TODO Auto-generated method stub
 		List<Competitor> winners = new ArrayList<>();
-		for(int i=0; i<competitors.size();i=i+2) {
+		for(int i = 0; i < competitors.size(); i = i+2) {
 			List<Competitor> duel = new ArrayList<>();
 			duel.add(competitors.get(i));
-			duel.add(competitors.get(i+1));
+			duel.add(competitors.get(i + 1));
 			this.playMatch(duel);
 			winners.add(this.getMatch().getWinner());
 		}
