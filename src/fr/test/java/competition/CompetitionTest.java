@@ -29,7 +29,6 @@ public abstract class CompetitionTest {
 	
 	@Test
 	public void testLessThanTwoPlayers() {
-		
 		List<Competitor> competitors = new ArrayList<>();
 		assertThrows(Exception.class, () -> new MockCompetition(competitors));
 	}

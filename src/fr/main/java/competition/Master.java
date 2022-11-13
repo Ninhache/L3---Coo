@@ -44,7 +44,8 @@ public class Master extends Competition {
 		if (nbPerGroup < 2) throw new MasterNotEnoughCompetitors();
 		
 		for (int i = 0 ; i < nbDivisions ; i ++) {
-			groups.add(new League(this.competitors.subList(i, i + (nbPerGroup * i))));
+			
+			groups.add(new League(this.competitors.subList(i, nbPerGroup + (nbPerGroup * i))));
 		}
 	}
 	
