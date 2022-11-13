@@ -9,13 +9,13 @@ import fr.main.java.competition.League;
 import fr.main.java.util.MapUtil;
 import fr.main.java.util.Math;
 /**
- * Strategy to pick the two best first.
+ * Strategy to pick the first person of each league.
  */
-public class StrategyPickTwoFirstBest implements IStrategyToPick {
+public class StrategyPickFirst implements IStrategyToPick {
 	
 	private List<Competitor> selectedCompetitors;
 
-	public StrategyPickTwoFirstBest() {
+	public StrategyPickFirst() {
 		this.selectedCompetitors = new ArrayList<>();
 	}
 
@@ -26,14 +26,11 @@ public class StrategyPickTwoFirstBest implements IStrategyToPick {
 	 */
 	@Override
 	public List<Competitor> selectCompetitors(League league) {		
-		
-		this.selectedCompetitors.addAll(MapUtil.sortByDescendingValue(league.getScores())
-													.keySet()
-													.stream()
-													.limit(2)
-													.collect(Collectors.toList()));
-		
-		return this.selectedCompetitors;
+		return MapUtil.sortByDescendingValue(league.getScores())
+			.keySet()
+			.stream()
+			.limit(1)
+			.collect(Collectors.toList());
 	}
 
 	/**
@@ -42,13 +39,13 @@ public class StrategyPickTwoFirstBest implements IStrategyToPick {
 	 */
 	@Override
 	public boolean isUsableForTournament() {
-		return Math.isPowerOfTwo(selectedCompetitors.size());
+		return !Math.isPowerOfTwo(selectedCompetitors.size()) && this.selectedCompetitors.size() <= 0;
 	}
 	
 	/**
 	 * @return Number of competitors in the list. 
 	 */
 	public int numberOfCompetitorReturned() {
-		return 2;
+		return 1;
 	}
 }
