@@ -12,15 +12,6 @@ public class TestCompetitors {
 	private Competitor competitor;
 	
 	@Test
-	public void testAddWin() {
-		this.competitor = new Competitor("Bob");
-		
-		assertEquals(0, this.competitor.getWins());
-		this.competitor.addWin();
-		assertEquals(1, this.competitor.getWins());
-	}
-	
-	@Test
 	public void testEqualsCompetitor() {
 		this.competitor = new Competitor("Bob");
 		

@@ -95,8 +95,6 @@ public abstract class AbstractMatch {
 				this.winner = Objects.requireNonNull(this.competitors.get(1));
 				this.looser = Objects.requireNonNull(this.competitors.get(0));
 			}
-		
-			this.winner.addWin();
 		}
 	}
 	
