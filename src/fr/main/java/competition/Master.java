@@ -136,5 +136,12 @@ public class Master extends Competition {
 		return this.ranking().entrySet().iterator().next().getKey();
 	}
 
+	public void setStrategy(IStrategyToPick strategy) {
+		this.strategy = strategy;
+	}
+	
+	public IStrategyToPick getStrategy() {
+		return strategy;
+	}
 
 }
