@@ -19,6 +19,14 @@ public class Master extends Competition {
 	protected IStrategyToPick strategy;
 	protected int nbDivisions;
 	
+	/**
+	 * Constructors of Master
+	 * @param competitors the list of competitors participating in the competition
+	 * @param match type of match for the competition
+	 * @param strategy type of strategy
+	 * @param nbDivisions number of divisions
+	 * @throws CompetitionIllegalCompetitorsSize 
+	 */
 	public Master(List<Competitor> competitors, AbstractMatch match, IStrategyToPick strategy, int nbDivisions) throws CompetitionIllegalCompetitorsSize {
 		super(competitors, match);
 		
@@ -40,14 +48,36 @@ public class Master extends Competition {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param competitors the list of competitors participating in the competition
+	 * @param strategy type of strategy
+	 * @throws CompetitionIllegalCompetitorsSize
+	 * @throws MasterIllegalCompetitorsSize
+	 */
 	public Master(List<Competitor> competitors, IStrategyToPick strategy) throws CompetitionIllegalCompetitorsSize, MasterIllegalCompetitorsSize {
 		this(competitors, new RandomMatch(), strategy, 2);
 	}
 	
+	/**
+	 * 
+	 * @param competitors the list of competitors participating in the competition
+	 * @param nbDivisions number of divisions
+	 * @throws CompetitionIllegalCompetitorsSize
+	 * @throws MasterIllegalCompetitorsSize
+	 */
 	public Master(List<Competitor> competitors, int nbDivisions) throws CompetitionIllegalCompetitorsSize, MasterIllegalCompetitorsSize {
 		this(competitors, new RandomMatch(), new StrategyPickTwoFirstBest(), nbDivisions);
 	}
 
+	/**
+	 * 
+	 * @param competitors
+	 * @param match
+	 * @param nbDivisions
+	 * @throws CompetitionIllegalCompetitorsSize
+	 * @throws MasterIllegalCompetitorsSize
+	 */
 	public Master(List<Competitor> competitors, AbstractMatch match,int nbDivisions) throws CompetitionIllegalCompetitorsSize, MasterIllegalCompetitorsSize {
 		this(competitors, match, new StrategyPickTwoFirstBest(), nbDivisions);
 	}
@@ -77,11 +107,18 @@ public class Master extends Competition {
 		}
 	}
 
+	/** 
+	 * @param nbCompetitors
+	 * @return number of matches played during the competition
+	 */
 	@Override
 	public int getNumberOfMatch(int nbCompetitors) {
 		return ((this.nbDivisions * 2) + ((this.strategy.numberOfCompetitorReturned() * this.nbDivisions) - 1));
 	}
 
+	/**
+	 * @return winner of the competition
+	 */
 	@Override
 	public Competitor getWinner() {
 		return this.ranking().entrySet().iterator().next().getKey();
