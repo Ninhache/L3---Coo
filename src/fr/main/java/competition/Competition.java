@@ -115,6 +115,7 @@ public abstract class Competition {
 		for (Map.Entry<Competitor, Integer> entry : rank.entrySet()) {
 			System.out.println(entry.getKey() + " - " + entry.getValue());
 		}
+		System.out.println("*** ******* ***");
 	}
 
 	/**
