@@ -1,37 +1,54 @@
 package fr.test.java.competition;
-import static org.junit.Assert.assertSame;
+
+
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import fr.main.java.Competitor;
 import fr.main.java.competition.Competition;
 import fr.main.java.exceptions.competitions.CompetitionIllegalCompetitorsSize;
+import fr.main.java.exceptions.competitions.TournamentIllegalCompetitorsSize;
 import fr.main.java.match.RandomMatch;
 
 public abstract class CompetitionTest {
 	
-	@Test(expected=CompetitionIllegalCompetitorsSize.class)
-	public void testLessThanTwoPlayers() throws CompetitionIllegalCompetitorsSize {
-		List<Competitor> compet = new ArrayList<>();
-		Competition competition = new MockCompetition(compet);
+	protected Competition competition;
+	
+	protected abstract Competition initCompetition() throws CompetitionIllegalCompetitorsSize, TournamentIllegalCompetitorsSize;
+	
+	@BeforeEach
+	public void init() throws CompetitionIllegalCompetitorsSize, TournamentIllegalCompetitorsSize {
+		this.competition = initCompetition();
+	}
+	
+	@Test
+	public void testLessThanTwoPlayers() {
+		List<Competitor> competitors = new ArrayList<>();
+		assertThrows(Exception.class, () -> new MockCompetition(competitors));
 	}
 	
 	@Test
 	public void testSetMatch() throws CompetitionIllegalCompetitorsSize {
 		List<Competitor> competitors = new ArrayList<>();;
-		for(int i=0;i<3;i++) {
+		for (int i = 0 ; i < 3 ; i++ ) {
 			competitors.add(new Competitor("Player"+i));
 		}
-		Competition mockCompetition = new MockCompetition(competitors);
+		competition = new MockCompetition(competitors);
 		
 		RandomMatch randomMatch = new RandomMatch();
-		mockCompetition.setMatch(randomMatch);
-		assertSame(randomMatch, mockCompetition.getMatch());
+		competition.setMatch(randomMatch);
+		
+		assertSame(randomMatch, competition.getMatch());
 	}	
 	
 	@Test
 	public abstract void testRightCountOfMatches() throws CompetitionIllegalCompetitorsSize;
+	
+	
 }

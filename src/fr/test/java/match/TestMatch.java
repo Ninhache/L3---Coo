@@ -67,19 +67,6 @@ public abstract class TestMatch {
 	}
 	
 	@Test
-	public void testWinnerGetAWin() {
-		Competitor c1 = new Competitor("Bob");
-		Competitor c2 = new Competitor("Alice");
-		
-		this.generateMatch(c1, c2);
-		
-		this.match.playMatch();
-		
-		// XOR
-		assertTrue((c1.getWins() == 0 && c2.getWins() == 1) || (c1.getWins() == 1 && c2.getWins() == 0));  
-	}
-	
-	@Test
 	public void testCantStartMatchMultipleTime() {
 		Competitor c1 = new Competitor("Bob");
 		Competitor c2 = new Competitor("Alice");

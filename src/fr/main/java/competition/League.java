@@ -2,9 +2,6 @@ package fr.main.java.competition;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import fr.main.java.Competitor;
 import fr.main.java.exceptions.competitions.CompetitionIllegalCompetitorsSize;
@@ -35,6 +32,8 @@ public class League extends Competition {
 		this(competitors,null);
 	}
 	
+	
+	
 	/**
 	 * Play matches between all the competitors given in parameters.
 	 * @param competitors the list of competitors to use
@@ -56,6 +55,23 @@ public class League extends Competition {
 				
 			}
 		}
+	}
+
+	/** 
+	 * @param nbCompetitors
+	 * @return number of matches played during the competition
+	 */
+	@Override
+	public int getNumberOfMatch(int nbCompetitors) {
+		return nbCompetitors * 2;
+	}
+
+	/**
+	 * @return winner of the competition
+	 */
+	@Override
+	public Competitor getWinner() {
+		return this.ranking().keySet().iterator().next();
 	}
 	
 }

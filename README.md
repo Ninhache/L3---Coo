@@ -24,7 +24,7 @@ git clone git@gitlab-etu.fil.univ-lille.fr:neo.almeida.etu/l3s5g7-coo-almeida-bo
 To generate project's documentation, you just have to execute theses commands :
 
 ```
-javadoc -sourcepath src -subpackages fr.main.java
+javadoc -sourcepath src -subpackages fr.main.java -d docs
 ```
 
 ### 2.3.1 Generate sources

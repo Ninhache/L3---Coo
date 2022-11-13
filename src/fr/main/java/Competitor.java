@@ -9,50 +9,46 @@ import java.util.UUID;
  * @author ambre.boussert.etu@univ-lille.fr
  *
  */
-public class Competitor implements Comparable<Competitor> {
-
+public class Competitor {
+	/**
+	 * Name of the competitor
+	 */
 	private String name;
-	private int wins;
+	/**
+	 * UUID of the competitor
+	 */
 	private final UUID uuid; 
 	
+	/**
+	 * Constructor Competitor with a name
+	 * @param name
+	 */
 	public Competitor(String name) {
 		this.uuid = UUID.randomUUID();
 		this.name = name;
-		this.wins = 0;
-	}
-
-	public void addWin() {
-		this.setWins(this.getWins() + 1);
-	}
-
-	@Override
-	public int compareTo(Competitor other) {
-		return this.wins - other.getWins();
 	}
 	
+	/**
+	 * @return UUID 
+	 */
 	public UUID getUuid() {
 		return uuid;
 	}
 	
+	/**
+	 * @return name
+	 */
 	public String getName() {
 		return name;
-	}
-	
-	public int getWins() {
-		return wins;
 	}
 	
 	public void setName(String name) {
 		this.name = name;
 	}
 	
-	public void setWins(int wins) {
-		this.wins = wins;
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(name, uuid, wins);
+		return Objects.hash(name, uuid);
 	}
 
 	@Override
@@ -64,7 +60,7 @@ public class Competitor implements Comparable<Competitor> {
 		if (getClass() != obj.getClass())
 			return false;
 		Competitor other = (Competitor) obj;
-		return Objects.equals(name, other.name) && Objects.equals(uuid, other.uuid) && wins == other.wins;
+		return Objects.equals(name, other.name) && Objects.equals(uuid, other.uuid);
 	}
 
 	@Override

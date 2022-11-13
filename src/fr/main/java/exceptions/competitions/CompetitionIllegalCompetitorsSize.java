@@ -9,4 +9,8 @@ public class CompetitionIllegalCompetitorsSize extends Exception {
 	public CompetitionIllegalCompetitorsSize() {
 		super("Illegal size of competitors : minimum 2 competitors excpected.");
 	}
+	
+	public CompetitionIllegalCompetitorsSize(String str) {
+		super(str);
+	}
 }

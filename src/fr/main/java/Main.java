@@ -1,12 +1,13 @@
 package fr.main.java;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import fr.main.java.competition.Competition;
 import fr.main.java.competition.League;
+import fr.main.java.competition.Master;
 import fr.main.java.competition.Tournament;
+import fr.main.java.competition.strategy.StrategyPickTwoFirstBest;
 import fr.main.java.exceptions.competitions.CompetitionIllegalCompetitorsSize;
 import fr.main.java.exceptions.competitions.TournamentIllegalCompetitorsSize;
 import fr.main.java.match.RandomMatch;
@@ -26,17 +27,16 @@ public class Main {
 			nbCompetitors = getNbCompetitors(typeCompet,sc);
 			sc.close();
 			
-			List<Competitor> competitors = new ArrayList<>();
-			for (int i = 0; i < nbCompetitors; i++) {
-				competitors.add(new Competitor("Player"+i));
-			}
-
+			List<Competitor> competitors = CompetitorFactory.createCompetitor(nbCompetitors);
+			System.out.println("COMPET : " + competitors);
+			
 			if (typeCompet == 1) {
 				competition = new League(competitors,match);
-			} else {
+			} else if (typeCompet == 2){
 				competition = new Tournament(competitors,match);
+			} else {
+				competition = new Master(competitors,match,new StrategyPickTwoFirstBest(),4);
 			}
-			
 			competition.play();
 		} catch (CompetitionIllegalCompetitorsSize e) {
 			e.printStackTrace();
@@ -49,12 +49,13 @@ public class Main {
 		System.out.println("Choose the competition :");
 		System.out.println("1. League");
 		System.out.println("2. Tournament");
-
+		System.out.println("3. Master");
+		
 		int competition=-1;
 		
-		while(competition!=1 && competition!=2) {	
+		while(competition!=1 && competition!=2 && competition!=3) {	
 			try {
-				System.out.println("You have to choose 1 or 2 !");
+				System.out.println("You have to choose 1, 2 or 3 !");
 				competition = sc.nextInt();
 			}catch(Exception e) {
 				sc.next();

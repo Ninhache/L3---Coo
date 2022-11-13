@@ -2,6 +2,8 @@ package fr.main.java.competition;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import fr.main.java.Competitor;
 import fr.main.java.exceptions.competitions.CompetitionIllegalCompetitorsSize;
@@ -54,5 +56,22 @@ public class Tournament extends Competition {
 			winners.add(this.getMatch().getWinner());
 		}
 		if(competitors.size()!=2) play(winners);
+	}
+
+	/** 
+	 * @param nbCompetitors
+	 * @return number of matches played during the competition
+	 */
+	@Override
+	public int getNumberOfMatch(int nbCompetitors) {
+		return (nbCompetitors - 1);
+	}
+
+	/**
+	 * @return winner of the competition
+	 */
+	@Override
+	public Competitor getWinner() {
+		return this.ranking().entrySet().iterator().next().getKey();
 	}
 }
