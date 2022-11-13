@@ -24,4 +24,6 @@ public interface IStrategyToPick {
 	 * @return Number of competitors in the list. 
 	 */
 	public int numberOfCompetitorReturned();
+	
+	public void clear();
 }

@@ -26,12 +26,16 @@ public class StrategyPickFirst implements IStrategyToPick {
 	 */
 	@Override
 	public List<Competitor> selectCompetitors(League league) {		
-		return MapUtil.sortByDescendingValue(league.getScores())
-			.keySet()
-			.stream()
-			.limit(1)
-			.collect(Collectors.toList());
+		
+		List<Competitor> result = new MapUtil().sortByDescendingValue(league.getScores())
+									.keySet()
+									.stream()
+									.limit(1)
+									.collect(Collectors.toList());
+		this.selectedCompetitors.addAll(result);
+		return result;
 	}
+
 
 	/**
 	 * Verify if the list of competitors is usable for a tournament.
@@ -47,5 +51,10 @@ public class StrategyPickFirst implements IStrategyToPick {
 	 */
 	public int numberOfCompetitorReturned() {
 		return 1;
+	}
+
+	@Override
+	public void clear() {
+		this.selectedCompetitors.clear();
 	}
 }

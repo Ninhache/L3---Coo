@@ -35,8 +35,9 @@ public class Main {
 			} else if (typeCompet == 2){
 				competition = new Tournament(competitors,match);
 			} else {
-				competition = new Master(competitors,match,new StrategyPickTwoFirstBest(),4);
+				competition = new Master(competitors, match, new StrategyPickTwoFirstBest(), 4);
 			}
+			
 			competition.play();
 		} catch (CompetitionIllegalCompetitorsSize e) {
 			e.printStackTrace();

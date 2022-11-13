@@ -27,13 +27,13 @@ public class StrategyPickTwoFirstBest implements IStrategyToPick {
 	@Override
 	public List<Competitor> selectCompetitors(League league) {		
 		
-		this.selectedCompetitors.addAll(MapUtil.sortByDescendingValue(league.getScores())
-													.keySet()
-													.stream()
-													.limit(2)
-													.collect(Collectors.toList()));
-		
-		return this.selectedCompetitors;
+		List<Competitor> result = new MapUtil().sortByDescendingValue(league.getScores())
+									.keySet()
+									.stream()
+									.limit(2)
+									.collect(Collectors.toList());
+		this.selectedCompetitors.addAll(result);
+		return result;
 	}
 
 	/**
@@ -50,5 +50,10 @@ public class StrategyPickTwoFirstBest implements IStrategyToPick {
 	 */
 	public int numberOfCompetitorReturned() {
 		return 2;
+	}
+
+	@Override
+	public void clear() {
+		this.selectedCompetitors.clear();
 	}
 }

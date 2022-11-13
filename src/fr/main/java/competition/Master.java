@@ -108,6 +108,7 @@ public class Master extends Competition {
             selectedForNext.addAll(this.strategy.selectCompetitors(league));
         }
         
+        this.strategy.clear();
         System.out.println("Final phase");
         try {
             Tournament tournament = new Tournament(selectedForNext, new RandomMatch());
