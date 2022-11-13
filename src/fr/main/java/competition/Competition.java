@@ -88,7 +88,6 @@ public abstract class Competition {
 	 * @param competitors the list of competitors to use in a match
 	 */
 	protected void playMatch(List<Competitor> competitors) {
-
 		this.match.setCompetitors(competitors);
 		this.match.playMatch();
 

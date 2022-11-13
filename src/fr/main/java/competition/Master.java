@@ -31,26 +31,23 @@ public class Master extends Competition {
 	 * @throws CompetitionIllegalCompetitorsSize 
 	 */
 	public Master(List<Competitor> competitors, AbstractMatch match, IStrategyToPick strategy, int nbDivisions) throws CompetitionIllegalCompetitorsSize {
-		super(competitors, match);
-		
-		if (competitors.size() % nbDivisions != 0) throw new MasterIllegalCompetitorsSize();
-		
-		this.strategy = strategy;
-		this.nbDivisions = nbDivisions;
-		
-		this.groups = new ArrayList<>();
-		
-		int nbPerGroup = this.competitors.size() / nbDivisions;
-		System.out.println("NB PER GROUYP" + nbPerGroup);
-		System.out.println("this.competitors.size() " + this.competitors.size());
-		System.out.println("NB DIV " + nbDivisions);
-		if (nbPerGroup < 2) throw new MasterNotEnoughCompetitors();
-		
-		for (int i = 0 ; i < nbDivisions ; i ++) {
-			
-			groups.add(new League(this.competitors.subList(i, nbPerGroup + (nbPerGroup * i))));
-		}
-	}
+        super(competitors, match);
+        
+        if (competitors.size() % nbDivisions != 0) throw new MasterIllegalCompetitorsSize();
+        
+        this.strategy = strategy;
+        this.nbDivisions = nbDivisions;
+        
+        this.groups = new ArrayList<>();
+        
+        int nbPerGroup = this.competitors.size() / nbDivisions;
+        if (nbPerGroup < 2) throw new MasterNotEnoughCompetitors();
+        
+        for (int i = 0 ; i < nbDivisions ; i ++) {
+            
+            groups.add(new League(this.competitors.subList(i*nbPerGroup, nbPerGroup + (nbPerGroup * i)), new RandomMatch()));
+        }
+    }
 	
 	/**
 	 * 
@@ -102,25 +99,25 @@ public class Master extends Competition {
 	 * @param competitors the list of competitors to use
 	 */
 	@Override
-	protected void play(List<Competitor> competitors) {
-		
-		List<Competitor> selectedForNext = new ArrayList<>();
-		System.out.println("First phase");
-		for (League league : this.groups) {
-			league.play();
-			selectedForNext.addAll(this.strategy.selectCompetitors(league));
-		}
-		
-		System.out.println("Final phase");
-		try {
-			Tournament tournament = new Tournament(selectedForNext);
-			
-			tournament.play();
-			this.scores = tournament.getScores();
-		} catch (TournamentIllegalCompetitorsSize | CompetitionIllegalCompetitorsSize e) {
-			e.printStackTrace();
-		}
-	}
+    protected void play(List<Competitor> competitors) {
+        
+        List<Competitor> selectedForNext = new ArrayList<>();
+        System.out.println("First phase");
+        for (League league : this.groups) {
+            league.play();
+            selectedForNext.addAll(this.strategy.selectCompetitors(league));
+        }
+        
+        System.out.println("Final phase");
+        try {
+            Tournament tournament = new Tournament(selectedForNext, new RandomMatch());
+            
+            tournament.play();
+            this.scores = tournament.getScores();
+        } catch (TournamentIllegalCompetitorsSize | CompetitionIllegalCompetitorsSize e) {
+            e.printStackTrace();
+        }
+    }
 
 	/** 
 	 * @param nbCompetitors
