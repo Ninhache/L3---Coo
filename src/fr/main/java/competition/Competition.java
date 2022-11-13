@@ -71,6 +71,10 @@ public abstract class Competition {
 		this.displayRanking();
 	}
 	
+	/** 
+	 * @param nbCompetitors
+	 * @return number of matches played during the competition
+	 */
 	public abstract int getNumberOfMatch(int nbCompetitors);
 
 	/**
@@ -131,12 +135,21 @@ public abstract class Competition {
 		return this.match;
 	}
 
+	/**
+	 * @return winner of the competition
+	 */
 	public abstract Competitor getWinner();
 
+	/**
+	 * @return scores of each competitor
+	 */
 	public Map<Competitor, Integer> getScores() {
 		return scores;
 	}
 	
+	/**
+	 * @return number of competitors
+	 */
 	public int getSize() {
 		return this.competitors.size();
 	}

@@ -58,11 +58,18 @@ public class Tournament extends Competition {
 		if(competitors.size()!=2) play(winners);
 	}
 
+	/** 
+	 * @param nbCompetitors
+	 * @return number of matches played during the competition
+	 */
 	@Override
 	public int getNumberOfMatch(int nbCompetitors) {
 		return (nbCompetitors - 1);
 	}
 
+	/**
+	 * @return winner of the competition
+	 */
 	@Override
 	public Competitor getWinner() {
 		return this.ranking().entrySet().iterator().next().getKey();

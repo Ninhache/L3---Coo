@@ -17,6 +17,11 @@ public class StrategyPickTwoFirstBest implements IStrategyToPick {
 		this.selectedCompetitors = new ArrayList<>();
 	}
 
+	/**
+	 * Select winners of a League
+	 * @param league League in wich competitors have played
+	 * @return List of competitors who won the league
+	 */
 	@Override
 	public List<Competitor> selectCompetitors(League league) {		
 		return MapUtil.sortByDescendingValue(league.getScores())
@@ -26,11 +31,18 @@ public class StrategyPickTwoFirstBest implements IStrategyToPick {
 			.collect(Collectors.toList());
 	}
 
+	/**
+	 * Verify if the list of competitors is usable for a tournament.
+	 * @return True if the list of competitors is usable for a tournament. False if not. 
+	 */
 	@Override
 	public boolean isUsableForTournament() {
 		return !Math.isPowerOfTwo(selectedCompetitors.size()) && this.selectedCompetitors.size() <= 0;
 	}
 	
+	/**
+	 * @return Number of competitors in the list. 
+	 */
 	public int numberOfCompetitorReturned() {
 		return 2;
 	}

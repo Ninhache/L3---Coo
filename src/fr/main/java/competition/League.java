@@ -60,11 +60,18 @@ public class League extends Competition {
 		}
 	}
 
+	/** 
+	 * @param nbCompetitors
+	 * @return number of matches played during the competition
+	 */
 	@Override
 	public int getNumberOfMatch(int nbCompetitors) {
 		return nbCompetitors * 2;
 	}
 
+	/**
+	 * @return winner of the competition
+	 */
 	@Override
 	public Competitor getWinner() {
 		return this.ranking().keySet().iterator().next();

@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CompetitorFactory {
-	
+	/**
+	 * Create an ArrayList of Competitors.
+	 * @param nbCompetitors Number of competitors
+	 * @return List of competitors
+	 */
 	public static List<Competitor> createCompetitor(int nbCompetitors){
 		List<Competitor> competitors = new ArrayList<>();
 		
