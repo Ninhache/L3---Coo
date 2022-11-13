@@ -5,6 +5,9 @@ import java.util.List;
 import fr.main.java.Competitor;
 import fr.main.java.competition.League;
 
+/**
+ * Interface for the type of strategy.
+ */
 public interface IStrategyToPick {
 	/**
 	 * Select winners of a League

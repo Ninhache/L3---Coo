@@ -10,19 +10,34 @@ import java.util.UUID;
  *
  */
 public class Competitor {
-
+	/**
+	 * Name of the competitor
+	 */
 	private String name;
+	/**
+	 * UUID of the competitor
+	 */
 	private final UUID uuid; 
 	
+	/**
+	 * Constructor Competitor with a name
+	 * @param name
+	 */
 	public Competitor(String name) {
 		this.uuid = UUID.randomUUID();
 		this.name = name;
 	}
 	
+	/**
+	 * @return UUID 
+	 */
 	public UUID getUuid() {
 		return uuid;
 	}
 	
+	/**
+	 * @return name
+	 */
 	public String getName() {
 		return name;
 	}

@@ -8,7 +8,9 @@ import fr.main.java.Competitor;
 import fr.main.java.competition.League;
 import fr.main.java.util.MapUtil;
 import fr.main.java.util.Math;
-
+/**
+ * Strategy to pick the two best first.
+ */
 public class StrategyPickTwoFirstBest implements IStrategyToPick {
 	
 	private List<Competitor> selectedCompetitors;

@@ -13,6 +13,9 @@ import fr.main.java.exceptions.competitions.TournamentIllegalCompetitorsSize;
 import fr.main.java.match.AbstractMatch;
 import fr.main.java.match.RandomMatch;
 
+/**
+ * Represents a Master.
+ */
 public class Master extends Competition {
 
 	protected List<League> groups;
@@ -73,9 +76,9 @@ public class Master extends Competition {
 
 	/**
 	 * 
-	 * @param competitors
-	 * @param match
-	 * @param nbDivisions
+	 * @param competitors the list of competitors participating in the competition
+	 * @param match type of match for the competition
+	 * @param nbDivisions number of divisions
 	 * @throws CompetitionIllegalCompetitorsSize
 	 * @throws MasterIllegalCompetitorsSize
 	 */
@@ -83,10 +86,21 @@ public class Master extends Competition {
 		this(competitors, match, new StrategyPickTwoFirstBest(), nbDivisions);
 	}
 	
+	/**
+	 * 
+	 * @param competitors the list of competitors participating in the competition
+	 * @param match type of match for the competition
+	 * @throws CompetitionIllegalCompetitorsSize
+	 * @throws MasterIllegalCompetitorsSize
+	 */
 	public Master(List<Competitor> competitors, AbstractMatch match) throws CompetitionIllegalCompetitorsSize, MasterIllegalCompetitorsSize {
 		this(competitors, match, new StrategyPickTwoFirstBest(), 2);
 	}
 	
+	/**
+	 * Play matches between all the competitors given in parameters.
+	 * @param competitors the list of competitors to use
+	 */
 	@Override
 	protected void play(List<Competitor> competitors) {
 		

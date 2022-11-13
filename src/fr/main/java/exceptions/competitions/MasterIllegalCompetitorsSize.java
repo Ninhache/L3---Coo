@@ -1,5 +1,7 @@
 package fr.main.java.exceptions.competitions;
-
+/**
+ * Exception for the master.
+ */
 public class MasterIllegalCompetitorsSize extends CompetitionIllegalCompetitorsSize {
 	
 	public MasterIllegalCompetitorsSize() {
