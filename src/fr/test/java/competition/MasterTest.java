@@ -2,11 +2,7 @@ package fr.test.java.competition;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 import fr.main.java.Competitor;
 import fr.main.java.CompetitorFactory;
