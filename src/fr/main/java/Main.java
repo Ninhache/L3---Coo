@@ -18,24 +18,30 @@ public class Main {
 	public static void main(String[] args) {
 		int typeCompet = -1;
 		int nbCompetitors = -1;
-		Competition competition;
+		Competition competition = null;
 		RandomMatch match = new RandomMatch();
 		Scanner sc = new Scanner(System.in);
 		
 		try {
 			typeCompet = getNbCompetition(sc);
-			nbCompetitors = getNbCompetitors(typeCompet,sc);
-			sc.close();
+			int nbPools = -1;
+			if (typeCompet == 3) {
+				nbPools = getNbPools(sc);
+				nbCompetitors = getNbCompetitors(typeCompet,sc, (nbPools * 2));
+			} else {
+				nbCompetitors = getNbCompetitors(typeCompet,sc, 2);
+			}
+			
 			
 			List<Competitor> competitors = CompetitorFactory.createCompetitor(nbCompetitors);
 			System.out.println("COMPET : " + competitors);
 			
 			if (typeCompet == 1) {
 				competition = new League(competitors,match);
-			} else if (typeCompet == 2){
+			} else if (typeCompet == 2) { 
 				competition = new Tournament(competitors,match);
 			} else {
-				competition = new Master(competitors, match, new StrategyPickTwoFirstBest(), 4);
+				competition = new Master(competitors, match, new StrategyPickTwoFirstBest(), nbPools);
 			}
 			
 			competition.play();
@@ -66,8 +72,10 @@ public class Main {
 		return competition;
 	}
 	
-	private static int getNbCompetitors(int competition, Scanner sc) {
-		System.out.println("Choose the number of competitors (min 2) :");
+	
+	
+	private static int getNbCompetitors(int competition, Scanner sc, int min) {
+		System.out.println(String.format("Choose the number of competitors (min %d) :", min));
 		
 		int nbCompetitors = -1;
 		
@@ -92,5 +100,23 @@ public class Main {
 			}
 		}
 		return nbCompetitors;
+	}
+	
+	private static int getNbPools(Scanner sc) {
+		System.out.println("Choose the number of pools (min 1) :");
+		
+		int nbPools = -1;
+		
+		while(nbPools <= 0) {
+			try {					
+				System.out.println("The number must be a power of two!!");
+				nbPools = sc.nextInt();
+			} catch(Exception e) {
+				sc.next();
+				continue;
+			}
+		}
+		
+		return nbPools;
 	}
 }
