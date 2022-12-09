@@ -44,6 +44,7 @@ public class Main {
 			Bookmaker bookmaker1 = new Bookmaker();
 			Journalist journalist1 = new Journalist();
 			
+			bookmaker1.initMap(competitors);
 			competition.addObservers(bookmaker1, journalist1);
 			/* === */
 			

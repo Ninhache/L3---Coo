@@ -1,8 +1,5 @@
 package fr.main.java.observer;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import fr.main.java.Competitor;
 import fr.main.java.match.AbstractMatch;
 import fr.main.java.util.json.DataHandler;

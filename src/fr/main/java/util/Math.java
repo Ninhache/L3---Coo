@@ -28,4 +28,8 @@ public class Math {
 		return (probability - threshold) < value && value < (probability + value) ; 
 	}
 	
+	public static double nToRate(int x) {
+		return java.lang.Math.exp(-(double)x/25) + 1;
+	}
+	
 }

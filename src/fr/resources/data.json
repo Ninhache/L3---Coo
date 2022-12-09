@@ -10,8 +10,8 @@
             "BetStars"
         ],
         "replicas" : [
-            "{1n}'s actual quotation is {1r} |  {2n}'s actual quotation is {1n}",
-            "{1n}'s rating was lower than {2n}'s one ({1r} vs {2r}), and still is after their victory ({1r} vs {2r})"
+            "{1n}'s actual quotation is {1r-} |  {2n}'s actual quotation is {2r-}",
+            "{1n}'s rating was lower than {2n}'s one ({1r-} vs {2r-}), and still is after their victory ({1r+} vs {2r+})"
         ]
     },
     "journalistsData": {
