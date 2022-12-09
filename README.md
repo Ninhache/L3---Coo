@@ -31,41 +31,49 @@ javadoc -sourcepath src -subpackages fr.main.java -d docs
 
 Root folder
 ```
-javac -sourcepath src ./src/fr/main/java/*.java -d ./bin
+# LINUX
+javac -cp ./dependencies/json_simple.jar -sourcepath src ./src/fr/main/java/*.java -d ./bin
+
+# WINDOWS
+todo
 ```
 
 ### 2.3.2 Execute sources
 
 Root folder
 ```
-java -classpath bin fr.main.java.Main
+# LINUX
+java -cp "dependencies/json_simple.jar:bin:." fr.main.java.Main
+
+# WINDOWS
+todo
 ```
 
 ### 2.4.1 Generate tests
 Root folder
 ```
 # LINUX
-javac -cp ./dependencies/junit-platform-console-standalone-1.9.0.jar -sourcepath src ./src/fr/test/java/*/*.java -d ./bin
+javac -cp "./dependencies/junit-platform-console-standalone-1.9.0.jar:./dependencies/json_simple.jar" -sourcepath src ./src/fr/test/java/*/*.java -d ./bin
 
 # WINDOWS
-javac -cp .\dependencies\junit-platform-console-standalone-1.9.0.jar -sourcepath src .\src\fr\test\java\*.java -d .\bin
+todo
 ```
 
 ### 2.4.2 Execute tests
 
 ```
 # LINUX
-java -jar ./dependencies/junit-platform-console-standalone-1.9.0.jar -class-path bin --scan-class-path
+java -jar ./dependencies/junit-platform-console-standalone-1.9.0.jar -class-path "bin:./dependencies/json_simple.jar" --scan-class-path
 
 # WINDOWS
-java -jar .\dependencies\junit-platform-console-standalone-1.9.0.jar -class-path bin --scan-class-path
+todo
 ```
 
 ### 2.5.1 Generate JAR 
 
 To generate project's JAR, you just have to execute theses commands :
 ```
-jar -cvfe Program.jar fr.main.java.Main -C bin .
+jar cfm Program.jar MANIFEST.txt .
 ```
 
 ### 2.5.2 Execute JAR
