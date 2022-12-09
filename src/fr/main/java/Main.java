@@ -41,11 +41,12 @@ public class Main {
 			}
 			
 			/* === */
-			Bookmaker bookmaker1 = new Bookmaker();
-			Journalist journalist1 = new Journalist();
+			Bookmaker bookmaker = new Bookmaker();
+			Journalist journalist = new Journalist();
 			
-			bookmaker1.initMap(competitors);
-			competition.addObservers(bookmaker1, journalist1);
+			// Maybe move this in another spot.. may in constructor?
+			competition.addObserver(bookmaker);
+			competition.addObserver(journalist);
 			/* === */
 			
 			competition.play();

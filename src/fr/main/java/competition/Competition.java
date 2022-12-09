@@ -171,10 +171,14 @@ public abstract class Competition {
 	public void setObservers(List<IObserver> observers) {
 		this.observers = observers;
 	}
-
-	public void addObservers(IObserver... ios) {
-		for (IObserver io : ios)
-			this.observers.add(io);
+	
+	public void addObserver(Journalist journalist) {
+		this.observers.add(journalist);
+	}
+	
+	public void addObserver(Bookmaker bookmaker) {
+		bookmaker.initMap(this.competitors);
+		this.observers.add(bookmaker);
 	}
 	
 }

@@ -43,11 +43,11 @@ public class Bookmaker implements IObserver {
 		replica = replica.replaceAll("\\{1n\\}", winner.getName());
 		replica = replica.replaceAll("\\{2n\\}", looser.getName());
 		
-		replica = replica.replaceAll("\\{1r\\-\\}", Math.nToRate(oldWinnerRate) + "");
-		replica = replica.replaceAll("\\{2r\\-\\}", Math.nToRate(oldLooserRate) + "");
+		replica = replica.replaceAll("\\{1r\\-\\}", String.format("%.3f", Math.nToRate(oldWinnerRate)));
+		replica = replica.replaceAll("\\{2r\\-\\}", String.format("%.3f", Math.nToRate(oldLooserRate)));
 		
-		replica = replica.replaceAll("\\{1r\\+\\}", Math.nToRate(rateMap.get(winner)) + "");
-		replica = replica.replaceAll("\\{2r\\+\\}", Math.nToRate(rateMap.get(looser)) + "");
+		replica = replica.replaceAll("\\{1r\\+\\}", String.format("%.3f", Math.nToRate(rateMap.get(winner))));
+		replica = replica.replaceAll("\\{2r\\+\\}", String.format("%.3f", Math.nToRate(rateMap.get(winner))));
 		
 		System.out.println(String.format("%s : %s", data.getRandomName(), replica));
 	}
