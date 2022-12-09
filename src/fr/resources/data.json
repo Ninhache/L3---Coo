@@ -1,0 +1,38 @@
+{
+    "bookmakersData": {
+        "names" : [
+            "Winamax",
+            "Betclic",
+            "Unibet",
+            "PMU",
+            "Bwin",
+            "ParionsSport",
+            "BetStars"
+        ],
+        "replicas" : [
+            "{1n}'s actual quotation is {1r} |  {2n}'s actual quotation is {1n}",
+            "{1n}'s rating was lower than {2n}'s one ({1r} vs {2r}), and still is after their victory ({1r} vs {2r})"
+        ]
+    },
+    "journalistsData": {
+        "names" : [
+            "Nelson Monfort",
+            "Jean-Michel Larqué",
+            "Jean-Michel Aulas",
+            "Pierre Ménès",
+            "Didier Roustan",
+            "Eric Cantona",
+            "Jean-Marc Ferreri",
+            "Jean-Pierre Papin",
+            "Jean-Pierre Bernès",
+            "Daniel Riolo",
+            "Mohamed Bouhafsi",
+            "Denis Balbir",
+            "Denis Brogniart"
+        ],
+        "replicas" : [
+            "{1n} won the match over {2n}",
+            "{1n} won the match over {2n}, Damnn {1n} is on fiiire !"
+        ]
+    }
+}
