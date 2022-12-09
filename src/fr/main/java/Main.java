@@ -11,6 +11,8 @@ import fr.main.java.competition.strategy.StrategyPickTwoFirstBest;
 import fr.main.java.exceptions.competitions.CompetitionIllegalCompetitorsSize;
 import fr.main.java.exceptions.competitions.TournamentIllegalCompetitorsSize;
 import fr.main.java.match.RandomMatch;
+import fr.main.java.observer.Bookmaker;
+import fr.main.java.observer.Journalist;
 import fr.main.java.util.Math;
 
 public class Main {
@@ -37,6 +39,13 @@ public class Main {
 			} else {
 				competition = new Master(competitors, match, new StrategyPickTwoFirstBest(), 4);
 			}
+			
+			/* === */
+			Bookmaker bookmaker1 = new Bookmaker();
+			Journalist journalist1 = new Journalist();
+			
+			competition.addObservers(bookmaker1, journalist1);
+			/* === */
 			
 			competition.play();
 		} catch (CompetitionIllegalCompetitorsSize e) {

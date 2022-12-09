@@ -138,6 +138,6 @@ public abstract class AbstractMatch {
 	
 	@Override
 	public String toString() {
-		return String.format("%s VS %s --> %s", this.getPlayer1(), this.getPlayer2(), this.getWinner());
+		return String.format("%s VS %s --> %s wins !", this.getPlayer1(), this.getPlayer2(), this.getWinner());
 	}
 }

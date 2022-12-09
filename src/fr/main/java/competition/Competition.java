@@ -100,7 +100,13 @@ public abstract class Competition {
 		this.scores.compute(this.match.getWinner(), (k, v) -> ++v);
 
 		System.out.println(this.match);
+		this.publishResults(this.match);
 	}
+	
+	private void publishResults(AbstractMatch match) {
+		for (IObserver gougougaga : this.observers)
+			gougougaga.update(match);
+	}	
 
 	/**
 	 * Returns a Map sorted by descending number of wins of all the competitors.
@@ -164,6 +170,11 @@ public abstract class Competition {
 
 	public void setObservers(List<IObserver> observers) {
 		this.observers = observers;
+	}
+
+	public void addObservers(IObserver... ios) {
+		for (IObserver io : ios)
+			this.observers.add(io);
 	}
 	
 }
