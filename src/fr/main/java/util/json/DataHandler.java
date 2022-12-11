@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.Reader;
 import java.util.ArrayList;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -62,9 +63,18 @@ public class DataHandler {
 	private void parseJournalists(JSONObject jsonObj) {
 		JSONObject journalistsObj = (JSONObject) jsonObj.get("journalistsData");
 		
-		ArrayList<String>  names = (ArrayList<String>) journalistsObj.get("names");
-		ArrayList<String>  replicas = (ArrayList<String>) journalistsObj.get("replicas");
+		ArrayList<String> names = new ArrayList<>();
+		JSONArray journNames = (JSONArray) journalistsObj.get("names");
+		for (Object name: journNames) {
+			names.add(name.toString());
+		}
 		
+		ArrayList<String> replicas = new ArrayList<>();
+		JSONArray journReplicas =  (JSONArray) journalistsObj.get("replicas");
+		for(Object replic: journReplicas) {
+			replicas.add(replic.toString());
+		}
+	
 		this.journalistsData = new JournalistsData(names, replicas);  
 	}
 	
@@ -75,8 +85,17 @@ public class DataHandler {
 	private void parseBookmakers(JSONObject jsonObj) {
 		JSONObject bookmakersObj = (JSONObject) jsonObj.get("bookmakersData");
 		
-		ArrayList<String>  names = (ArrayList<String>) bookmakersObj.get("names");
-		ArrayList<String>  replicas = (ArrayList<String>) bookmakersObj.get("replicas");
+		ArrayList<String> names = new ArrayList<>();
+		JSONArray bookNames = (JSONArray) bookmakersObj.get("names");
+		for (Object name: bookNames) {
+			names.add(name.toString());
+		}
+		
+		ArrayList<String> replicas = new ArrayList<>();
+		JSONArray bookReplicas =  (JSONArray) bookmakersObj.get("replicas");
+		for(Object replic: bookReplicas) {
+			replicas.add(replic.toString());
+		}
 		
 		this.bookmakersData = new BookmakersData(names, replicas);  
 	}
