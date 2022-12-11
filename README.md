@@ -24,7 +24,11 @@ git clone git@gitlab-etu.fil.univ-lille.fr:neo.almeida.etu/l3s5g7-coo-almeida-bo
 To generate project's documentation, you just have to execute theses commands :
 
 ```
-javadoc -sourcepath src -subpackages fr.main.java -d docs
+# LINUX 
+javadoc -sourcepath src -subpackages fr.main.java -d docs -cp ./dependencies/json_simple.jar
+
+# WINDOWS
+javadoc -sourcepath src -subpackages fr.main.java -d docs -cp .\dependencies\json_simple.jar
 ```
 
 ### 2.3.1 Generate sources
@@ -35,7 +39,8 @@ Root folder
 javac -cp ./dependencies/json_simple.jar -sourcepath src ./src/fr/main/java/*.java -d ./bin
 
 # WINDOWS
-todo
+javac -cp .\dependencies\json_simple.jar -sourcepath src .\src\fr\main\java\*.java -d .\bin
+
 ```
 
 ### 2.3.2 Execute sources
@@ -46,7 +51,7 @@ Root folder
 java -cp "dependencies/json_simple.jar:bin:." fr.main.java.Main
 
 # WINDOWS
-todo
+java -cp "dependencies\json_simple.jar;bin;." fr.main.java.Main
 ```
 
 ### 2.4.1 Generate tests
@@ -56,7 +61,8 @@ Root folder
 javac -cp "./dependencies/junit-platform-console-standalone-1.9.0.jar:./dependencies/json_simple.jar" -sourcepath src ./src/fr/test/java/*/*.java -d ./bin
 
 # WINDOWS
-todo
+javac -cp ".\dependencies\junit-platform-console-standalone-1.9.0.jar;.\dependencies\json_simple.jar" -sourcepath src .\src\fr\test\java\*.java -d .\bin
+
 ```
 
 ### 2.4.2 Execute tests
@@ -66,7 +72,8 @@ todo
 java -jar ./dependencies/junit-platform-console-standalone-1.9.0.jar -class-path "bin:./dependencies/json_simple.jar" --scan-class-path
 
 # WINDOWS
-todo
+java -jar .\dependencies\junit-platform-console-standalone-1.9.0.jar --class-path "bin;.\dependencies\json_simple.jar" --scan-class-path
+
 ```
 
 ### 2.5.1 Generate JAR 
