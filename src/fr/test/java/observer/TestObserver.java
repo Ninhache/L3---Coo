@@ -3,6 +3,7 @@ package fr.test.java.observer;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import fr.main.java.Competitor;
 import fr.main.java.CompetitorFactory;
@@ -19,6 +20,7 @@ public abstract class TestObserver {
 	
 	protected Competition competition;
 	
+	@Test
 	public abstract void testSetObserver();
 	
 	@BeforeEach
