@@ -24,48 +24,63 @@ git clone git@gitlab-etu.fil.univ-lille.fr:neo.almeida.etu/l3s5g7-coo-almeida-bo
 To generate project's documentation, you just have to execute theses commands :
 
 ```
-javadoc -sourcepath src -subpackages fr.main.java -d docs
+# LINUX 
+javadoc -sourcepath src -subpackages fr.main.java -d docs -cp ./dependencies/json_simple.jar
+
+# WINDOWS
+javadoc -sourcepath src -subpackages fr.main.java -d docs -cp .\dependencies\json_simple.jar
 ```
 
 ### 2.3.1 Generate sources
 
 Root folder
 ```
-javac -sourcepath src ./src/fr/main/java/*.java -d ./bin
+# LINUX
+javac -cp ./dependencies/json_simple.jar -sourcepath src ./src/fr/main/java/*.java -d ./bin
+
+# WINDOWS
+javac -cp .\dependencies\json_simple.jar -sourcepath src .\src\fr\main\java\*.java -d .\bin
+
 ```
 
 ### 2.3.2 Execute sources
 
 Root folder
 ```
-java -classpath bin fr.main.java.Main
+# LINUX
+java -cp "dependencies/json_simple.jar:bin:." fr.main.java.Main
+
+# WINDOWS
+java -cp "dependencies\json_simple.jar;bin;." fr.main.java.Main
 ```
 
 ### 2.4.1 Generate tests
 Root folder
 ```
 # LINUX
-javac -cp ./dependencies/junit-platform-console-standalone-1.9.0.jar -sourcepath src ./src/fr/test/java/*/*.java -d ./bin
+javac -cp "./dependencies/junit-platform-console-standalone-1.9.0.jar:./dependencies/json_simple.jar" -sourcepath src ./src/fr/test/java/*/*.java -d ./bin
 
 # WINDOWS
-javac -cp .\dependencies\junit-platform-console-standalone-1.9.0.jar -sourcepath src .\src\fr\test\java\*.java -d .\bin
+javac -cp ".\dependencies\junit-platform-console-standalone-1.9.0.jar;.\dependencies\json_simple.jar" -sourcepath src .\src\fr\test\java\*.java -d .\bin
+
 ```
 
 ### 2.4.2 Execute tests
 
 ```
 # LINUX
-java -jar ./dependencies/junit-platform-console-standalone-1.9.0.jar -class-path bin --scan-class-path
+java -jar ./dependencies/junit-platform-console-standalone-1.9.0.jar -class-path "bin:./dependencies/json_simple.jar" --scan-class-path
 
 # WINDOWS
-java -jar .\dependencies\junit-platform-console-standalone-1.9.0.jar -class-path bin --scan-class-path
+java -jar .\dependencies\junit-platform-console-standalone-1.9.0.jar --class-path "bin;.\dependencies\json_simple.jar" --scan-class-path
+
 ```
 
 ### 2.5.1 Generate JAR 
 
 To generate project's JAR, you just have to execute theses commands :
 ```
-jar -cvfe Program.jar fr.main.java.Main -C bin .
+jar cfm Program.jar MANIFEST.txt .
 ```
 
 ### 2.5.2 Execute JAR

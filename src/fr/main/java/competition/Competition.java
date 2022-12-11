@@ -1,5 +1,6 @@
 package fr.main.java.competition;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,9 @@ import fr.main.java.Competitor;
 import fr.main.java.exceptions.competitions.CompetitionIllegalCompetitorsSize;
 import fr.main.java.match.AbstractMatch;
 import fr.main.java.match.RandomMatch;
+import fr.main.java.observer.Bookmaker;
+import fr.main.java.observer.IObserver;
+import fr.main.java.observer.Journalist;
 import fr.main.java.util.MapUtil;
 
 /**
@@ -28,6 +32,7 @@ public abstract class Competition {
 
 	protected Map<Competitor, Integer> scores;
 
+	private List<IObserver> observers;
 	/**
 	 * Constructor with a list of competitors and Match.
 	 * 
@@ -47,7 +52,8 @@ public abstract class Competition {
 		for (Competitor competitor : competitors) {
 			scores.put(competitor, 0);
 		}
-
+		
+		this.observers = new ArrayList<>();
 	}
 
 	/**
@@ -94,7 +100,13 @@ public abstract class Competition {
 		this.scores.compute(this.match.getWinner(), (k, v) -> ++v);
 
 		System.out.println(this.match);
+		this.publishResults(this.match);
 	}
+	
+	private void publishResults(AbstractMatch match) {
+		for (IObserver gougougaga : this.observers)
+			gougougaga.update(match);
+	}	
 
 	/**
 	 * Returns a Map sorted by descending number of wins of all the competitors.
@@ -151,5 +163,22 @@ public abstract class Competition {
 	public int getSize() {
 		return this.competitors.size();
 	}
+	
+	public List<IObserver> getObservers() {
+		return observers;
+	}
 
+	public void setObservers(List<IObserver> observers) {
+		this.observers = observers;
+	}
+	
+	public void addObserver(Journalist journalist) {
+		this.observers.add(journalist);
+	}
+	
+	public void addObserver(Bookmaker bookmaker) {
+		bookmaker.initMap(this.competitors);
+		this.observers.add(bookmaker);
+	}
+	
 }

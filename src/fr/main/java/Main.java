@@ -11,6 +11,8 @@ import fr.main.java.competition.strategy.StrategyPickTwoFirstBest;
 import fr.main.java.exceptions.competitions.CompetitionIllegalCompetitorsSize;
 import fr.main.java.exceptions.competitions.TournamentIllegalCompetitorsSize;
 import fr.main.java.match.RandomMatch;
+import fr.main.java.observer.Bookmaker;
+import fr.main.java.observer.Journalist;
 import fr.main.java.util.Math;
 
 public class Main {
@@ -43,6 +45,15 @@ public class Main {
 			} else {
 				competition = new Master(competitors, match, new StrategyPickTwoFirstBest(), nbPools);
 			}
+			
+			/* === */
+			Bookmaker bookmaker = new Bookmaker();
+			Journalist journalist = new Journalist();
+			
+			// Maybe move this in another spot.. may in constructor?
+			competition.addObserver(bookmaker);
+			competition.addObserver(journalist);
+			/* === */
 			
 			competition.play();
 		} catch (CompetitionIllegalCompetitorsSize e) {

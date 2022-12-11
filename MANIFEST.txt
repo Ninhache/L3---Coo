@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: dependencies/json_simple.jar bin/
+Created-By: 17.0.2 (Azul Systems, Inc.)
+Main-Class: fr.main.java.Main
